@@ -1,5 +1,5 @@
 require 'minitest/autorun'
-require_relative '1'
+require_relative '1_handshake'
 
 class SecretHandshakeTest < Minitest::Test
   def test_handshake_1_to_wink
