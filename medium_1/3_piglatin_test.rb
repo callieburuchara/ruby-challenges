@@ -55,12 +55,10 @@ class PigLatinTest < Minitest::Test
   end
 
   def test_word_beginning_with_xe
-    skip
     assert_equal 'enonxay', PigLatin.translate('xenon')
   end
 
   def test_word_beginning_with_xr
-    skip
     assert_equal 'xrayay', PigLatin.translate('xray')
   end
 end

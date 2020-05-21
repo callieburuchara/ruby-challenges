@@ -1,5 +1,3 @@
-require 'pry'
-
 class PigLatin
   def self.translate(input)
     all_words = input.split
@@ -10,12 +8,12 @@ class PigLatin
   end
 
   def self.all_word_checks(word)
-    return vowel_first(word) if !!vowel_first(word)
+    return vowel_first(word) if vowel?(word[0])  
     return three_letter(word) if !!three_letter(word)
     return two_letter(word) if !!two_letter(word)
     return qu_after_first(word) if !!qu_after_first(word)
-    #return word_with_x(word) if !!word_with_x(word)
-    return word_with_y(word) if !!word_with_y(word)
+    return word_with_x(word) if word.start_with?('x') 
+    return word_with_y(word) if word.start_with?('y')
     return simple_consonant(word)
   end
 
@@ -24,10 +22,6 @@ class PigLatin
   def self.vowel?(letter)
     letter =~ /[aeiou]/i
   end
-
-#   def consonant?(letter)
-#     letter =~ /[b-df-hj-np-tv-z]/i
-#   end
 
   def self.three_letter(word)
     return false unless ['thr', 'sch'].any? {|w| word.start_with?(w)}
@@ -56,7 +50,6 @@ class PigLatin
   end
 
   def self.vowel_first(word)
-    return false unless vowel?(word[0])
     word + 'ay'   
   end
 
@@ -66,13 +59,17 @@ class PigLatin
     word.delete_prefix(first) << first + 'ay'
   end
 
-#   def self.word_with_x(word)
-#     return false unless word.start_with?('x')
-#     vowel?(word[1]) ?   
-#   end
+  def self.word_with_x(word)
+    if vowel?(word[1])
+      word = word.chars
+      word.shift
+      (word << 'xay').join
+    else
+      word << 'ay'
+    end  
+  end
  
   def self.word_with_y(word)
-    return false unless word.start_with?('y')
     if vowel?(word[1])
       word = word.chars
       word.shift
@@ -83,6 +80,3 @@ class PigLatin
   end                       
 
 end
-
-
-p PigLatin.translate('yttria')
