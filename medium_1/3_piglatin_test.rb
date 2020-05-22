@@ -1,5 +1,5 @@
 require 'minitest/autorun'
-require_relative '3_piglatin'
+require_relative '3_piglatin_alt'
 
 class PigLatinTest < Minitest::Test
   def test_word_beginning_with_a
