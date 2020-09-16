@@ -5,13 +5,11 @@ class DNA
   end
 
   def hamming_distance(comparison)
-    @length < comparison.length ? shorter = @strand : shorter = comparison
+    shorter = @length < comparison.length ? @strand : comparison
     counter = 0
     shorter.length.times do |index|
-      counter +=1 unless @strand[index] == comparison[index]
+      counter += 1 unless @strand[index] == comparison[index]
     end
     counter
   end
-
- 
 end
